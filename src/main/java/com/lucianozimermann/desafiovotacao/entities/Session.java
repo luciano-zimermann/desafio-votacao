@@ -30,5 +30,6 @@ public class Session {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
+    @Enumerated(EnumType.STRING)
     private SessionStatus status;
 }
