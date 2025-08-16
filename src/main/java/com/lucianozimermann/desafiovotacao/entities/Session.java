@@ -32,4 +32,12 @@ public class Session {
 
     @Enumerated(EnumType.STRING)
     private SessionStatus status;
+
+    public void calculteSessionEnd() {
+        if (duration == null) {
+            duration = 1;
+        }
+
+        this.endDate = startDate.plusMinutes(duration);
+    }
 }
