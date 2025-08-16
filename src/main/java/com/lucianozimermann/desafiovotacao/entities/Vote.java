@@ -23,8 +23,8 @@ public class Vote {
     private Associate associate;
 
     @ManyToOne
-    @JoinColumn(name = "agenda_id")
-    private Agenda agenda;
+    @JoinColumn(name = "session_id")
+    private Session session;
 
     @Enumerated(EnumType.STRING)
     private VoteEnum vote;
