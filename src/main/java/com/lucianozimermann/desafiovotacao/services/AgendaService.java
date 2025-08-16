@@ -4,6 +4,7 @@ import com.lucianozimermann.desafiovotacao.dto.requests.AgendaDTO;
 import com.lucianozimermann.desafiovotacao.dto.responses.AgendaResponseDTO;
 import com.lucianozimermann.desafiovotacao.entities.Agenda;
 import com.lucianozimermann.desafiovotacao.exceptions.AgendaNotFoundException;
+import com.lucianozimermann.desafiovotacao.exceptions.InvalidAgendaException;
 import com.lucianozimermann.desafiovotacao.repositories.AgendaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class AgendaService {
                               .name(dto.getName())
                               .description(dto.getDescription())
                               .build();
+
+        if (agenda.getName() == null) {
+            throw new InvalidAgendaException();
+        }
 
         agenda = repository.save(agenda);
 
