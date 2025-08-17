@@ -21,7 +21,6 @@ import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class SessionServiceTest {
-
     private static final Long AGENDA_ID = 1L;
     private static final Integer DURATION = 2;
 

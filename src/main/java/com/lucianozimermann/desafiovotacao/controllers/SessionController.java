@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "sessions")
 public class SessionController {
-
     @Autowired
     private SessionService service;
 

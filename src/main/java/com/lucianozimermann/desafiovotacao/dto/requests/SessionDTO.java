@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class SessionDTO {
-
     private Long agendaId;
     private Integer duration;
 }

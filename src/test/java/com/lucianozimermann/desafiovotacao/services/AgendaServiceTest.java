@@ -17,7 +17,6 @@ import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
 public class AgendaServiceTest {
-
     private static final String AGENDA_TITLE = "Nova Pauta";
     private static final String AGENDA_DESCRIPTION = "Descrição da Pauta";
 

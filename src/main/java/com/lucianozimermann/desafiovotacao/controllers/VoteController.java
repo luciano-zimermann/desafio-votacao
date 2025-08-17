@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping
 public class VoteController {
-
     @Autowired
     private VoteService service;
 }
