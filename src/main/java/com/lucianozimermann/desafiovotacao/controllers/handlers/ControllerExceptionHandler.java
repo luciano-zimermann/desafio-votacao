@@ -3,6 +3,7 @@ package com.lucianozimermann.desafiovotacao.controllers.handlers;
 import com.lucianozimermann.desafiovotacao.dto.responses.CustomErrorDTO;
 import com.lucianozimermann.desafiovotacao.exceptions.EntityNotFoundException;
 import com.lucianozimermann.desafiovotacao.exceptions.InvalidAgendaException;
+import com.lucianozimermann.desafiovotacao.exceptions.RuleConflictException;
 import com.lucianozimermann.desafiovotacao.exceptions.SessionAlreadyOpenException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,8 @@ public class ControllerExceptionHandler {
         return getResponseEntity(e, request, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    @ExceptionHandler(SessionAlreadyOpenException.class)
-    public ResponseEntity<CustomErrorDTO> sessionAlreadyOpen(SessionAlreadyOpenException e, HttpServletRequest request) {
+    @ExceptionHandler(RuleConflictException.class)
+    public ResponseEntity<CustomErrorDTO> sessionAlreadyOpen(RuleConflictException e, HttpServletRequest request) {
         return getResponseEntity(e, request, HttpStatus.CONFLICT);
     }
 
