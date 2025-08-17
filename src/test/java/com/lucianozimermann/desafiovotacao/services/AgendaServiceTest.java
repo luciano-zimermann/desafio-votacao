@@ -6,17 +6,14 @@ import com.lucianozimermann.desafiovotacao.entities.Agenda;
 import com.lucianozimermann.desafiovotacao.exceptions.InvalidAgendaException;
 import com.lucianozimermann.desafiovotacao.repositories.AgendaRepository;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
 
 @ExtendWith(MockitoExtension.class)
 public class AgendaServiceTest {
@@ -36,16 +33,16 @@ public class AgendaServiceTest {
         Agenda agendaMock = buildAgenda();
         AgendaDTO agendaDTO = new AgendaDTO(AGENDA_TITLE, AGENDA_DESCRIPTION);
 
-        when(repository.save(any(Agenda.class))).thenReturn(agendaMock);
+        Mockito.when(repository.save( Mockito.any( Agenda.class))).thenReturn(agendaMock);
 
         AgendaResponseDTO agendaResponseDTO = service.register(agendaDTO);
 
-        assertNotNull(agendaResponseDTO);
-        assertEquals(agendaMock.getId(), agendaResponseDTO.getId());
-        assertEquals(agendaMock.getName(), agendaResponseDTO.getName());
-        assertEquals(agendaMock.getDescription(), agendaResponseDTO.getDescription());
+        Assertions.assertNotNull(agendaResponseDTO);
+        Assertions.assertEquals(agendaMock.getId(), agendaResponseDTO.getId());
+        Assertions.assertEquals(agendaMock.getName(), agendaResponseDTO.getName());
+        Assertions.assertEquals(agendaMock.getDescription(), agendaResponseDTO.getDescription());
 
-        verify(repository, times(1)).save(any(Agenda.class));
+        Mockito.verify(repository, Mockito.times(1)).save(Mockito.any(Agenda.class));
     }
 
     @Test
@@ -53,14 +50,14 @@ public class AgendaServiceTest {
     void createAgenda_shouldThrowInvalidAgendaExceptionWhenHasInvalidData() {
         AgendaDTO invalidDTO = new AgendaDTO(null, AGENDA_DESCRIPTION);
 
-        assertThrows(InvalidAgendaException.class, () -> service.register(invalidDTO));
+        Assertions.assertThrows(InvalidAgendaException.class, () -> service.register(invalidDTO));
 
-        verify(repository, never()).save(any(Agenda.class));
+        Mockito.verify(repository, Mockito.never()).save(Mockito.any(Agenda.class));
     }
 
     private Agenda buildAgenda() {
         return Agenda.builder()
-                     .id( 1L )
+                     .id(1L)
                      .name(AGENDA_TITLE)
                      .description(AGENDA_DESCRIPTION)
                      .build();
