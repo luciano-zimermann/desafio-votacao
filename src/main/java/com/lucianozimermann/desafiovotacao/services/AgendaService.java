@@ -15,7 +15,7 @@ public class AgendaService {
     @Autowired
     private AgendaRepository repository;
 
-    public AgendaResponseDTO register( AgendaDTO dto) {
+    public AgendaResponseDTO register(AgendaDTO dto) {
         Agenda agenda = Agenda.builder()
                               .name(dto.getName())
                               .description(dto.getDescription())
@@ -27,17 +27,21 @@ public class AgendaService {
 
         agenda = repository.save(agenda);
 
+        return buildAgendaResponseDTO(agenda);
+    }
+
+    public AgendaResponseDTO findById(Long id) {
+        Agenda agenda = repository.findById(id)
+                                  .orElseThrow(AgendaNotFoundException::new);
+
+        return buildAgendaResponseDTO(agenda);
+    }
+
+    private AgendaResponseDTO buildAgendaResponseDTO(Agenda agenda) {
         return AgendaResponseDTO.builder()
                                 .id(agenda.getId())
                                 .name(agenda.getName())
                                 .description(agenda.getDescription())
                                 .build();
-    }
-
-    public Agenda findById(Long id) {
-        Agenda agenda = repository.findById(id)
-                                  .orElseThrow(AgendaNotFoundException::new);
-
-        return agenda;
     }
 }

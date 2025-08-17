@@ -2,7 +2,6 @@ package com.lucianozimermann.desafiovotacao.controllers;
 
 import com.lucianozimermann.desafiovotacao.dto.requests.AgendaDTO;
 import com.lucianozimermann.desafiovotacao.dto.responses.AgendaResponseDTO;
-import com.lucianozimermann.desafiovotacao.entities.Agenda;
 import com.lucianozimermann.desafiovotacao.services.AgendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ public class AgendaController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Agenda> findyById(@PathVariable Long id) {
+    public ResponseEntity<AgendaResponseDTO> findyById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 }
