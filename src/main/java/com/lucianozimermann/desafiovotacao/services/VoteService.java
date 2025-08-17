@@ -9,10 +9,7 @@ import com.lucianozimermann.desafiovotacao.entities.Session;
 import com.lucianozimermann.desafiovotacao.entities.Vote;
 import com.lucianozimermann.desafiovotacao.enums.SessionStatus;
 import com.lucianozimermann.desafiovotacao.enums.VoteOption;
-import com.lucianozimermann.desafiovotacao.exceptions.AgendaNotFoundException;
-import com.lucianozimermann.desafiovotacao.exceptions.AgendaWithoutClosedSessionsException;
-import com.lucianozimermann.desafiovotacao.exceptions.AssociateNotFoundException;
-import com.lucianozimermann.desafiovotacao.exceptions.SessionNotFoundException;
+import com.lucianozimermann.desafiovotacao.exceptions.*;
 import com.lucianozimermann.desafiovotacao.repositories.AgendaRepository;
 import com.lucianozimermann.desafiovotacao.repositories.AssociateRepository;
 import com.lucianozimermann.desafiovotacao.repositories.SessionRepository;
@@ -40,12 +37,17 @@ public class VoteService {
     public VoteResponseDTO registerVote(VoteDTO dto) {
         Session session = getSession(dto);
 
-        if (LocalDateTime.now().isAfter(session.getEndDate())) {
-            throw new RuntimeException("A sessão de votação está encerrada!");
+        if (session.getStatus() == SessionStatus.OPEN && session.getEndDate().isBefore(LocalDateTime.now())) {
+            session.setStatus(SessionStatus.CLOSED);
+            sessionRepository.save(session);
+        }
+
+        if (session.getStatus() == SessionStatus.CLOSED) {
+            throw new SessionClosedException();
         }
 
         if (voteRepository.existsByAssociateIdAndSessionAgendaId(dto.getAssociateId(), session.getAgenda().getId())) {
-            throw new RuntimeException("Este associado já votou nessa Pauta!");
+            throw new AssociateAlreadyVotedInAgendaException();
         }
 
         Associate associate = associateRepository.findById(dto.getAssociateId())
