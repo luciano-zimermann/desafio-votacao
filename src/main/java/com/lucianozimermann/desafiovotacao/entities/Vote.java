@@ -1,6 +1,6 @@
 package com.lucianozimermann.desafiovotacao.entities;
 
-import com.lucianozimermann.desafiovotacao.enums.VoteEnum;
+import com.lucianozimermann.desafiovotacao.enums.VoteOption;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,5 +27,5 @@ public class Vote {
     private Session session;
 
     @Enumerated(EnumType.STRING)
-    private VoteEnum vote;
+    private VoteOption vote;
 }

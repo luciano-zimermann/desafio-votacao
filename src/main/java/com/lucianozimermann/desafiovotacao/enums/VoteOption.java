@@ -1,5 +1,5 @@
 package com.lucianozimermann.desafiovotacao.enums;
 
-public enum VoteEnum {
+public enum VoteOption {
     YES, NO
 }
