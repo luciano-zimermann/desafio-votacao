@@ -41,20 +41,17 @@ public class SessionService {
 
         session = sessionRepository.save(session);
 
-        return SessionResponseDTO.builder()
-                                 .id(session.getId())
-                                 .agendaId(agenda.getId())
-                                 .startDate(session.getStartDate())
-                                 .endDate(session.getEndDate())
-                                 .status(session.getStatus().name())
-                                 .build();
+        return buildSessionResponseDTO(session, agenda);
     }
 
-    public Session findById(Long id) {
+    public SessionResponseDTO findById(Long id) {
         Session session = sessionRepository.findById(id)
                                            .orElseThrow(SessionNotFoundException::new);
 
-        return session;
+        Agenda agenda = agendaRepository.findById(session.getAgenda().getId())
+                                        .orElseThrow(AgendaNotFoundException::new);
+
+        return buildSessionResponseDTO(session, agenda);
     }
 
     private void validateExistingOpenSession(SessionDTO dto) {
@@ -68,5 +65,15 @@ public class SessionService {
                 throw new SessionAlreadyOpenException();
             }
         }
+    }
+
+    private SessionResponseDTO buildSessionResponseDTO(Session session, Agenda agenda) {
+        return SessionResponseDTO.builder()
+                                 .id(session.getId())
+                                 .agendaId(agenda.getId())
+                                 .startDate(session.getStartDate())
+                                 .endDate(session.getEndDate())
+                                 .status(session.getStatus().name())
+                                 .build();
     }
 }

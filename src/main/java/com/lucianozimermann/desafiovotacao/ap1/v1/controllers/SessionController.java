@@ -23,7 +23,7 @@ public class SessionController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Session> findyById(@PathVariable Long id) {
+    public ResponseEntity<SessionResponseDTO> findyById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 }
