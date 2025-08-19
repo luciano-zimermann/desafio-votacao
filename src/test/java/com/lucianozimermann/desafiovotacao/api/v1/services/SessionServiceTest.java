@@ -1,14 +1,13 @@
 package com.lucianozimermann.desafiovotacao.api.v1.services;
 
-import com.lucianozimermann.desafiovotacao.ap1.v1.dto.requests.SessionDTO;
-import com.lucianozimermann.desafiovotacao.ap1.v1.dto.responses.SessionResponseDTO;
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Agenda;
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Session;
-import com.lucianozimermann.desafiovotacao.ap1.v1.enums.SessionStatus;
-import com.lucianozimermann.desafiovotacao.ap1.v1.services.SessionService;
+import com.lucianozimermann.desafiovotacao.api.v1.dto.requests.SessionDTO;
+import com.lucianozimermann.desafiovotacao.api.v1.dto.responses.SessionResponseDTO;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Agenda;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Session;
+import com.lucianozimermann.desafiovotacao.api.v1.enums.SessionStatus;
 import com.lucianozimermann.desafiovotacao.exceptions.SessionAlreadyOpenException;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.AgendaRepository;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.SessionRepository;
+import com.lucianozimermann.desafiovotacao.api.v1.repositories.AgendaRepository;
+import com.lucianozimermann.desafiovotacao.api.v1.repositories.SessionRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

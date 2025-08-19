@@ -1,11 +1,10 @@
 package com.lucianozimermann.desafiovotacao.api.v1.services;
 
-import com.lucianozimermann.desafiovotacao.ap1.v1.dto.requests.AgendaDTO;
-import com.lucianozimermann.desafiovotacao.ap1.v1.dto.responses.AgendaResponseDTO;
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Agenda;
-import com.lucianozimermann.desafiovotacao.ap1.v1.services.AgendaService;
+import com.lucianozimermann.desafiovotacao.api.v1.dto.requests.AgendaDTO;
+import com.lucianozimermann.desafiovotacao.api.v1.dto.responses.AgendaResponseDTO;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Agenda;
 import com.lucianozimermann.desafiovotacao.exceptions.InvalidAgendaException;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.AgendaRepository;
+import com.lucianozimermann.desafiovotacao.api.v1.repositories.AgendaRepository;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

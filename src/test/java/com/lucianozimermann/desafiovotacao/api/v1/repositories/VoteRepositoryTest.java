@@ -1,15 +1,11 @@
 package com.lucianozimermann.desafiovotacao.api.v1.repositories;
 
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Agenda;
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Associate;
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Session;
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Vote;
-import com.lucianozimermann.desafiovotacao.ap1.v1.enums.SessionStatus;
-import com.lucianozimermann.desafiovotacao.ap1.v1.enums.VoteOption;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.AgendaRepository;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.AssociateRepository;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.SessionRepository;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.VoteRepository;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Agenda;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Associate;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Session;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Vote;
+import com.lucianozimermann.desafiovotacao.api.v1.enums.SessionStatus;
+import com.lucianozimermann.desafiovotacao.api.v1.enums.VoteOption;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,9 @@
 package com.lucianozimermann.desafiovotacao.api.v1.controllers;
 
-import com.lucianozimermann.desafiovotacao.ap1.v1.services.AgendaService;
-import com.lucianozimermann.desafiovotacao.ap1.v1.services.AssociateService;
-import com.lucianozimermann.desafiovotacao.ap1.v1.services.SessionService;
-import com.lucianozimermann.desafiovotacao.ap1.v1.services.VoteService;
+import com.lucianozimermann.desafiovotacao.api.v1.services.AgendaService;
+import com.lucianozimermann.desafiovotacao.api.v1.services.AssociateService;
+import com.lucianozimermann.desafiovotacao.api.v1.services.SessionService;
+import com.lucianozimermann.desafiovotacao.api.v1.services.VoteService;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

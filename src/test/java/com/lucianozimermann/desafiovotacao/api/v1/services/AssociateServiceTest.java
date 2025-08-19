@@ -1,11 +1,10 @@
 package com.lucianozimermann.desafiovotacao.api.v1.services;
 
-import com.lucianozimermann.desafiovotacao.ap1.v1.dto.requests.AssociateDTO;
-import com.lucianozimermann.desafiovotacao.ap1.v1.dto.responses.AssociateResponseDTO;
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Associate;
-import com.lucianozimermann.desafiovotacao.ap1.v1.services.AssociateService;
+import com.lucianozimermann.desafiovotacao.api.v1.dto.requests.AssociateDTO;
+import com.lucianozimermann.desafiovotacao.api.v1.dto.responses.AssociateResponseDTO;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Associate;
 import com.lucianozimermann.desafiovotacao.exceptions.AssociateNotFoundException;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.AssociateRepository;
+import com.lucianozimermann.desafiovotacao.api.v1.repositories.AssociateRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

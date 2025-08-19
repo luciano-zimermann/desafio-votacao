@@ -1,7 +1,6 @@
 package com.lucianozimermann.desafiovotacao.api.v1.repositories;
 
-import com.lucianozimermann.desafiovotacao.ap1.v1.entities.Associate;
-import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.AssociateRepository;
+import com.lucianozimermann.desafiovotacao.api.v1.entities.Associate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

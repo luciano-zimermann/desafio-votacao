@@ -1,9 +1,9 @@
 package com.lucianozimermann.desafiovotacao.api.v1.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lucianozimermann.desafiovotacao.ap1.v1.dto.requests.AgendaDTO;
-import com.lucianozimermann.desafiovotacao.ap1.v1.dto.responses.AgendaResponseDTO;
-import com.lucianozimermann.desafiovotacao.ap1.v1.services.AgendaService;
+import com.lucianozimermann.desafiovotacao.api.v1.dto.requests.AgendaDTO;
+import com.lucianozimermann.desafiovotacao.api.v1.dto.responses.AgendaResponseDTO;
+import com.lucianozimermann.desafiovotacao.api.v1.services.AgendaService;
 import com.lucianozimermann.desafiovotacao.exceptions.InvalidAgendaException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
