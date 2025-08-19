@@ -10,11 +10,13 @@ import com.lucianozimermann.desafiovotacao.exceptions.SessionAlreadyOpenExceptio
 import com.lucianozimermann.desafiovotacao.exceptions.SessionNotFoundException;
 import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.AgendaRepository;
 import com.lucianozimermann.desafiovotacao.ap1.v1.repositories.SessionRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @Service
 public class SessionService {
 
@@ -25,8 +27,13 @@ public class SessionService {
     private AgendaRepository agendaRepository;
 
     public SessionResponseDTO openSession(SessionDTO dto){
+        log.info("Abrindo Sessão para agendaId={} com duração={}", dto.getAgendaId(), dto.getDuration());
+
         Agenda agenda = agendaRepository.findById(dto.getAgendaId())
-                                        .orElseThrow(AgendaNotFoundException::new);
+                                        .orElseThrow(() -> {
+                                            log.warn("Pauta não encontrada: id={}", dto.getAgendaId());
+                                            return new AgendaNotFoundException();
+                                        });
 
         validateExistingOpenSession(dto);
 
@@ -41,33 +48,53 @@ public class SessionService {
 
         session = sessionRepository.save(session);
 
+        log.info("Sessão aberta com sucesso: sessionId={}, agendaId={}", session.getId(), agenda.getId());
+
         return buildSessionResponseDTO(session, agenda);
     }
 
     public SessionResponseDTO findById(Long id) {
+        log.info("Buscando sessão pelo id={}", id);
+
         Session session = sessionRepository.findById(id)
-                                           .orElseThrow(SessionNotFoundException::new);
+                                           .orElseThrow(() -> {
+                                               log.warn("Sessão não encontrada: id={}", id);
+                                               return new SessionNotFoundException();
+                                           });
 
         Agenda agenda = agendaRepository.findById(session.getAgenda().getId())
-                                        .orElseThrow(AgendaNotFoundException::new);
+                                        .orElseThrow(() -> {
+                                            log.warn("Pauta não encontrada: id={}", session.getAgenda().getId());
+                                            return new AgendaNotFoundException();
+                                        });
+
+        log.info("Sessão encontrada: sessionId={}, agendaId={}", session.getId(), agenda.getId());
 
         return buildSessionResponseDTO(session, agenda);
     }
 
     private void validateExistingOpenSession(SessionDTO dto) {
+        log.info("Validando sessão aberta existente para agendaId={}", dto.getAgendaId());
+
         Session existingSession = sessionRepository.findByAgendaIdAndStatus(dto.getAgendaId(), SessionStatus.OPEN);
 
         if (existingSession != null) {
             if (existingSession.getEndDate().isBefore(LocalDateTime.now())){
                 existingSession.setStatus(SessionStatus.CLOSED);
                 sessionRepository.save(existingSession);
+
+                log.info("Sessão existente com prazo encerrado fechada automaticamente: sessionId={}", existingSession.getId());
             } else {
+                log.warn("Tentativa de abrir sessão quando já existe uma aberta: sessionId={}", existingSession.getId());
+
                 throw new SessionAlreadyOpenException();
             }
         }
     }
 
     private SessionResponseDTO buildSessionResponseDTO(Session session, Agenda agenda) {
+        log.trace("Construindo DTO para a sessão id={}", session.getId());
+
         return SessionResponseDTO.builder()
                                  .id(session.getId())
                                  .agendaId(agenda.getId())
