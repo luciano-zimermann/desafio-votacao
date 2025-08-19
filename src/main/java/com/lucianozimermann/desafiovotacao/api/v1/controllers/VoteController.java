@@ -4,6 +4,7 @@ import com.lucianozimermann.desafiovotacao.api.v1.dto.requests.VoteDTO;
 import com.lucianozimermann.desafiovotacao.api.v1.dto.responses.VoteResponseDTO;
 import com.lucianozimermann.desafiovotacao.api.v1.dto.responses.VotingResultResponseDTO;
 import com.lucianozimermann.desafiovotacao.api.v1.services.VoteService;
+import com.lucianozimermann.desafiovotacao.api.v1.swaggers.VoteSwagger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/votes")
-public class VoteController {
+public class VoteController implements VoteSwagger {
     @Autowired
     private VoteService voteService;
 

@@ -3,6 +3,7 @@ package com.lucianozimermann.desafiovotacao.api.v1.controllers;
 import com.lucianozimermann.desafiovotacao.api.v1.dto.requests.AgendaDTO;
 import com.lucianozimermann.desafiovotacao.api.v1.dto.responses.AgendaResponseDTO;
 import com.lucianozimermann.desafiovotacao.api.v1.services.AgendaService;
+import com.lucianozimermann.desafiovotacao.api.v1.swaggers.AgendaSwagger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/v1/agendas")
-public class AgendaController {
+public class AgendaController implements AgendaSwagger {
     @Autowired
     private AgendaService service;
 

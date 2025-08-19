@@ -3,6 +3,7 @@ package com.lucianozimermann.desafiovotacao.api.v1.controllers;
 import com.lucianozimermann.desafiovotacao.api.v1.dto.requests.AssociateDTO;
 import com.lucianozimermann.desafiovotacao.api.v1.dto.responses.AssociateResponseDTO;
 import com.lucianozimermann.desafiovotacao.api.v1.services.AssociateService;
+import com.lucianozimermann.desafiovotacao.api.v1.swaggers.AssociateSwagger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(value = "/api/v1/associates")
-public class AssociateController {
+public class AssociateController implements AssociateSwagger {
     @Autowired
     private AssociateService service;
 
